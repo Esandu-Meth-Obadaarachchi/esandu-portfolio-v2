@@ -1,0 +1,84 @@
+.st-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 4fr) 8fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+.st-portrait {
+  margin: 0;
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+}
+.st-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: var(--radius);
+  /* Pull the bright daylight shot toward the page palette. */
+  filter: saturate(0.85) contrast(1.04) brightness(0.92);
+}
+.st-portrait figcaption {
+  margin-top: 14px;
+  color: var(--mute);
+}
+
+.st-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-stretch: 92%;
+  font-size: clamp(1.75rem, 3.6vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+.st-word[data-hot] {
+  color: var(--signal);
+}
+
+@media (max-width: 860px) {
+  .st-grid {
+    grid-template-columns: 1fr;
+  }
+  .st-portrait {
+    position: relative;
+    top: 0;
+    max-width: 360px;
+  }
+}
+
+/* Quick links under the portrait, so nobody has to scroll to the footer. */
+.st-links {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.st-links-wide {
+  grid-column: 1 / -1;
+}
+.st-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: var(--pill);
+  border: 1px solid var(--line-strong);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .st-links a:hover {
+    border-color: var(--bone);
+    background: rgba(233, 234, 227, 0.05);
+  }
+}

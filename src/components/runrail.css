@@ -1,0 +1,121 @@
+.rail {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-rail);
+}
+.rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.rail-track {
+  position: absolute;
+  right: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line-strong);
+}
+.rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--bone);
+  transform-origin: top;
+}
+
+.rail-node {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 22px;
+}
+
+.rail-dot {
+  position: relative;
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+}
+.rail-dot::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1.5px solid var(--dim);
+  transition: background-color 240ms ease, border-color 240ms ease, transform 240ms var(--ease-out);
+}
+.rail-node[data-state='done'] .rail-dot::before {
+  background: var(--bone);
+  border-color: var(--bone);
+}
+.rail-node[data-state='live'] .rail-dot::before {
+  background: var(--signal);
+  border-color: var(--signal);
+  transform: scale(1.25);
+}
+.rail-node[data-state='live'] .rail-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid var(--signal);
+  animation: rail-pulse 1.8s var(--ease-out) infinite;
+}
+@keyframes rail-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.rail-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--mute);
+  background: rgba(10, 13, 11, 0.8);
+  padding: 3px 8px;
+  border-radius: var(--pill);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 180ms ease, transform 220ms var(--ease-out);
+  white-space: nowrap;
+}
+.rail-node[data-state='live'] .rail-label {
+  color: var(--bone);
+}
+@media (hover: hover) and (pointer: fine) {
+  .rail:hover .rail-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.rail-node:focus-visible .rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 1100px) {
+  .rail {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-node[data-state='live'] .rail-dot::after {
+    display: none;
+  }
+}

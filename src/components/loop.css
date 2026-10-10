@@ -1,0 +1,178 @@
+.loop {
+  background:
+    radial-gradient(80% 60% at 75% 50%, rgba(42, 90, 70, 0.45), transparent 70%),
+    var(--forest);
+  position: relative;
+}
+
+.loop-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.loop-grid {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+.loop-intro {
+  color: var(--mute);
+  max-width: 40ch;
+  margin: 20px 0 0;
+}
+
+.loop-step {
+  margin-top: clamp(32px, 6vh, 64px);
+  min-height: 260px;
+}
+.loop-count {
+  color: var(--signal);
+  margin: 0 0 10px;
+}
+.loop-verb {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 70%;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.loop-line {
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 600;
+  margin: 14px 0 0;
+}
+.loop-body {
+  color: var(--mute);
+  max-width: 46ch;
+  margin: 10px 0 0;
+}
+
+.loop-svg {
+  width: 100%;
+  max-height: 82vh;
+  overflow: visible;
+}
+.loop-base {
+  fill: none;
+  stroke: rgba(233, 234, 227, 0.14);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 7;
+}
+.loop-progress {
+  fill: none;
+  stroke: var(--bone);
+  stroke-width: 2;
+}
+.loop-arrow {
+  fill: none;
+  stroke: var(--dim);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 300ms ease;
+}
+.loop-arrow[data-on='true'] {
+  stroke: var(--bone);
+}
+
+.loop-node-halo {
+  fill: transparent;
+  stroke: transparent;
+  transition: stroke 300ms ease, fill 300ms ease;
+}
+.loop-node-dot {
+  fill: var(--forest);
+  stroke: var(--dim);
+  stroke-width: 2;
+  transition: fill 300ms ease, stroke 300ms ease;
+}
+.loop-label {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--mute);
+  transition: fill 300ms ease;
+}
+.loop-node[data-state='done'] .loop-node-dot {
+  fill: var(--bone);
+  stroke: var(--bone);
+}
+.loop-node[data-state='done'] .loop-label {
+  fill: var(--bone);
+}
+.loop-node[data-state='live'] .loop-node-dot {
+  fill: var(--signal);
+  stroke: var(--signal);
+}
+.loop-node[data-state='live'] .loop-node-halo {
+  stroke: rgba(232, 67, 46, 0.5);
+  fill: rgba(232, 67, 46, 0.12);
+}
+.loop-node[data-state='live'] .loop-label {
+  fill: var(--bone);
+  font-weight: 600;
+}
+
+.loop-pulse {
+  fill: var(--signal);
+  filter: drop-shadow(0 0 8px rgba(232, 67, 46, 0.7));
+}
+
+.loop-orbit {
+  transform-origin: 300px 300px;
+  animation: loop-orbit 6s linear infinite;
+  fill: var(--signal);
+}
+@keyframes loop-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loop-center {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: 120px;
+  fill: var(--bone);
+  letter-spacing: -0.02em;
+}
+.loop-center-sub {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--mute);
+}
+
+/* Mobile and reduced motion: a vertical trace. */
+.loop-list {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0 0 0 28px;
+  border-left: 1px solid var(--forest-3);
+  display: grid;
+  gap: 48px;
+}
+.loop-list li {
+  position: relative;
+}
+.loop-list-node {
+  position: absolute;
+  left: -35px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--forest);
+  border: 2px solid var(--bone);
+}
+.loop-list-again {
+  color: var(--signal);
+}

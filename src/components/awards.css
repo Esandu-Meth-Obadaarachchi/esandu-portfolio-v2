@@ -1,0 +1,243 @@
+.awards-grid {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+
+.awards .h2 {
+  font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+}
+.trophy-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 86vh;
+  width: 100%;
+}
+.trophy-glow {
+  position: absolute;
+  inset: 10% 5% 15%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(214, 168, 78, 0.22), transparent 75%);
+  filter: blur(10px);
+}
+.trophy-canvas {
+  position: absolute;
+  inset: 0;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.trophy-canvas:active {
+  cursor: grabbing;
+}
+html.has-cursor .trophy-canvas {
+  cursor: none;
+}
+.trophy-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+.awards-list {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.awards-list li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 20px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.awards-year {
+  color: var(--gold);
+  padding-top: 5px;
+}
+.awards-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 88%;
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.15;
+  margin: 0;
+}
+.awards-body {
+  margin: 6px 0 0;
+  color: var(--mute);
+  font-size: 0.95rem;
+}
+.awards-project {
+  margin-top: 2px;
+}
+
+/* Photo strip: natural aspect ratios, one shared height. */
+.photos-wrap {
+  margin-top: clamp(64px, 9vw, 120px);
+}
+.photos-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.photos-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--mute);
+}
+.photos-hint svg {
+  animation: photos-nudge 1.8s var(--ease-in-out) infinite;
+}
+@keyframes photos-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+.photos-nav {
+  display: flex;
+  gap: 8px;
+}
+.photos-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  transition: border-color 200ms ease, background-color 200ms ease, opacity 200ms ease, transform 140ms var(--ease-out);
+}
+.photos-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.photos-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+.photos-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+@media (hover: hover) and (pointer: fine) {
+  .photos-btn:not(:disabled):hover {
+    border-color: var(--bone);
+    background: rgba(233, 234, 227, 0.06);
+  }
+}
+/* Right-edge fade says "there is more"; it goes away at the end. */
+.photos-viewport {
+  position: relative;
+}
+.photos-viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(140px, 18vw);
+  background: linear-gradient(to right, transparent, var(--ink));
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+.photos-viewport[data-end='true']::after {
+  opacity: 0;
+}
+.photos {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  scroll-padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  outline-offset: -4px;
+}
+.photos::-webkit-scrollbar {
+  display: none;
+}
+.photos-track {
+  list-style: none;
+  margin: 0;
+  /* Start in line with the page container, bleed off the right edge. */
+  --inset: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  padding: 0 calc(var(--gutter) + 16px) 0 var(--inset);
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+.photos-track li {
+  scroll-snap-align: start;
+}
+.photos figure {
+  --photo-h: clamp(300px, 46vh, 460px);
+  margin: 0;
+  /* Width follows the photo's own aspect ratio, so captions wrap under it
+     instead of squeezing it. */
+  width: calc(var(--photo-h) * var(--ar));
+}
+.photos img {
+  height: var(--photo-h);
+  width: 100%;
+  border-radius: var(--radius);
+  object-fit: cover;
+  background: var(--ink-2);
+}
+.photos figcaption {
+  margin-top: 12px;
+  color: var(--mute);
+}
+@media (max-width: 900px) {
+  .awards-grid {
+    grid-template-columns: 1fr;
+  }
+  .awards .h2 {
+  font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+}
+.trophy-wrap {
+    max-width: 440px;
+    margin: 0 auto;
+    max-height: 70vh;
+  }
+  .awards-list li {
+    grid-template-columns: 48px 1fr;
+  }
+  .awards-project {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* Phones: size cards by width, not height, so nothing is wider than the screen
+   and every photo keeps its own shape. One card per swipe. */
+@media (max-width: 700px) {
+  .photos {
+    scroll-snap-type: x mandatory;
+  }
+  .photos-track {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .photos figure {
+    width: 80vw;
+  }
+  .photos img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: cover;
+  }
+  .photos-track li {
+    scroll-snap-align: center;
+  }
+}

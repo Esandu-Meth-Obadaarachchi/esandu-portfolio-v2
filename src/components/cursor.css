@@ -1,0 +1,75 @@
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.cursor[data-hidden='true'] {
+  opacity: 0;
+}
+
+.cursor-dot-pos,
+.cursor-ring-pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: var(--signal);
+  transition: transform 160ms var(--ease-out);
+}
+.cursor-dot[data-hover='true'] {
+  transform: scale(0.6);
+}
+
+.cursor-ring {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(233, 234, 227, 0.75);
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.cursor-ring[data-hover='true'] {
+  border-color: var(--signal);
+}
+
+.cursor-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 160ms ease, transform 200ms var(--ease-out);
+}
+.cursor-label[data-show='true'] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 1px wide, scaled along X to the dot-to-ring distance. */
+.cursor-edge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  margin-top: -0.5px;
+  background: var(--bone);
+  transform-origin: 0 50%;
+  will-change: transform, opacity;
+}
