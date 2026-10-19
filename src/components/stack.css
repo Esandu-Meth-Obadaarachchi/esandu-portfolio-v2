@@ -16,7 +16,7 @@
   border: 1px solid var(--line);
   background: var(--ink-2);
 }
-.layer[data-hot] {
+.layer[data-tone='red'] {
   background:
     linear-gradient(90deg, var(--signal-soft), transparent 60%),
     var(--ink-2);
@@ -35,7 +35,7 @@
   margin: 8px 0 0;
   color: var(--mute);
 }
-.layer[data-hot] .layer-note {
+.layer[data-tone='red'] .layer-note {
   color: var(--signal);
 }
 .layer-items {
@@ -52,4 +52,14 @@
     grid-template-columns: 1fr;
     margin-left: 0;
   }
+}
+
+.layer[data-tone='green'] {
+  background:
+    linear-gradient(90deg, rgba(42, 90, 70, 0.55), transparent 65%),
+    var(--ink-2);
+  border-color: rgba(74, 140, 108, 0.5);
+}
+.layer[data-tone='green'] .layer-note {
+  color: #7fbf9f;
 }

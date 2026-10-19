@@ -135,12 +135,44 @@ export const FEATURED = [
   },
 ];
 
+// Demo reels, played on the laptop in the Demos section and in project drawers.
+export const DEMOS = [
+  {
+    id: 'lune',
+    name: 'Lune AI',
+    kicker: 'Agents & LLMs',
+    line: 'Project and task management with an agentic second brain. Upload anything, ask anything, and it acts.',
+    tags: ['LangGraph', 'Claude', 'Pinecone', 'FastAPI', 'Next.js'],
+    link: { label: 'luneai.site', href: 'https://luneai.site' },
+    src: '/video/lune.mp4',
+    poster: '/video/lune.jpg',
+  },
+  {
+    id: 'visitloop',
+    name: 'VisitLoop',
+    kicker: 'Client product, The Odon',
+    line: 'One app to run a hotel: bookings, invoices, stock, and AI that explains the numbers.',
+    tags: ['Flutter', 'Node.js', 'MongoDB', 'Claude API'],
+    src: '/video/visitloop.mp4',
+    poster: '/video/visitloop.jpg',
+  },
+  {
+    id: 'visitloop-finance',
+    name: 'VisitLoop Finance',
+    kicker: 'Client product, The Odon',
+    line: 'Every income, expense and food cost in one view. Claude spots the unusual and writes the monthly report.',
+    tags: ['Claude API', 'Anomaly tracking', 'Dashboards'],
+    src: '/video/visitloop-finance.mp4',
+    poster: '/video/visitloop-finance.jpg',
+  },
+];
+
 export const CATEGORIES = ['Agents & LLMs', 'Machine learning', 'Research', 'Client products'];
 
 // Every project, for the filterable index.
 export const PROJECTS = [
   {
-    id: 'lune', name: 'Lune AI', category: 'Agents & LLMs', where: 'Independent',
+    id: 'lune', name: 'Lune AI', demo: 'lune', category: 'Agents & LLMs', where: 'Independent',
     line: 'Agentic RAG assistant with a self-grading retrieval graph.',
     body: 'A LangGraph ReAct agent over private workspace documents. Knowledge search is its own graph: query rewrite, retrieval across Pinecone namespaces, cross-encoder rerank, relevance grading and retry. A groundedness check verifies every claim traces to a source. Multi-tenant isolation is enforced at the query layer, not by filtering afterwards.',
     stack: ['LangGraph', 'LangChain', 'Claude Haiku 4.5', 'FastAPI', 'Pinecone', 'Voyage AI', 'Firebase', 'Next.js', 'AWS ECS Fargate', 'Docker'],
@@ -217,16 +249,16 @@ export const PROJECTS = [
     links: [],
   },
   {
-    id: 'odon', name: 'Hotel Operations Platform', category: 'Client products', where: 'The Odon Pvt Ltd',
-    line: 'Hotel management app with AI expense entry from a photo or a sentence.',
+    id: 'odon', name: 'VisitLoop', demo: 'visitloop', category: 'Client products', where: 'The Odon Pvt Ltd',
+    line: 'Hotel operations app for The Odon, with AI expense entry and insights.',
     body: 'Full-stack hotel management for The Odon, Anuradhapura: bookings, inventory, revenue and staff, on Android and web with CI/CD. The Claude API turns a receipt photo or a typed note into an expense entry and powers financial analysis.',
     stack: ['Flutter', 'Node.js', 'MongoDB', 'Claude API'],
     links: [],
   },
   {
-    id: 'hotel-finance', name: 'Hotel Finance Dashboard', category: 'Client products', where: 'The Odon Pvt Ltd',
+    id: 'hotel-finance', name: 'VisitLoop Finance', demo: 'visitloop-finance', category: 'Client products', where: 'The Odon Pvt Ltd',
     line: 'Full financial view of a hotel, with Claude finding the anomalies.',
-    body: 'Takes its data from the Hotel Operations Platform and gives a full view of income, expenses, food costs and everything in between. The Claude API is integrated to give insights, track anomalies and write summaries month by month and year by year.',
+    body: 'A hotel finance dashboard that takes its data from VisitLoop and gives a full view of income, expenses, food costs and everything in between. The Claude API is integrated to give insights, track anomalies and write summaries month by month and year by year.',
     stack: ['Claude API', 'Dashboard', 'Anomaly tracking', 'Node.js', 'MongoDB'],
     links: [],
   },
@@ -313,13 +345,8 @@ export const PAPERS = [
   },
 ];
 
-// The AI product stack, top (closest to the model) to bottom (closest to the metal).
+// The AI product stack, agents first. Alternates red and green in Stack.jsx.
 export const STACK = [
-  {
-    layer: 'Models',
-    note: 'Training, fine-tuning, evaluating',
-    items: ['PyTorch', 'TensorFlow', 'Keras', 'scikit-learn', 'XGBoost', 'Hugging Face', 'BERT', 'YOLO', 'CycleGAN', 'MAML', 'LLM fine-tuning', 'OpenCV'],
-  },
   {
     layer: 'Agents & retrieval',
     note: 'Where most of my work lives now',
@@ -329,6 +356,11 @@ export const STACK = [
     layer: 'Product',
     note: 'The app people actually touch',
     items: ['FastAPI', 'Node.js', 'React', 'Next.js', 'Flutter', 'React Native', 'Python', 'JavaScript', 'Dart', 'Java', 'SQL'],
+  },
+  {
+    layer: 'Models',
+    note: 'Training, fine-tuning, evaluating',
+    items: ['PyTorch', 'TensorFlow', 'Keras', 'scikit-learn', 'XGBoost', 'Hugging Face', 'BERT', 'YOLO', 'CycleGAN', 'MAML', 'LLM fine-tuning', 'OpenCV'],
   },
   {
     layer: 'Infra & MLOps',
@@ -400,6 +432,7 @@ export const CERTS = [
 export const SECTIONS = [
   { id: 'top', label: 'Start' },
   { id: 'work', label: 'Work' },
+  { id: 'demos', label: 'Demos' },
   { id: 'awards', label: 'Awards' },
   { id: 'research', label: 'Research' },
   { id: 'stack', label: 'Skills' },

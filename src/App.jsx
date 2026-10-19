@@ -7,6 +7,7 @@ import Hero from './components/Hero';
 import Statement from './components/Statement';
 import Loop from './components/Loop';
 import Work from './components/Work';
+import Demos from './components/Demos';
 import Awards from './components/Awards';
 import Research from './components/Research';
 import Stack from './components/Stack';
@@ -25,6 +26,7 @@ export default function App() {
         <Hero />
         <Statement />
         <Work />
+        <Demos />
         <Awards />
         <Research />
         <Stack />

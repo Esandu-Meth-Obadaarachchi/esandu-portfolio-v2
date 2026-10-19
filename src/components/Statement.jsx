@@ -7,7 +7,7 @@ import './statement.css';
 // One paragraph, read at the pace you scroll. Each word lights as the reading
 // line passes it. Marked words (wrapped in *) light in signal red.
 const TEXT =
-  'I take the slowest part of a business, turn it into data, wire an *AI agent* into it and *ship it to production.* At SLT Telecom that became two platforms, one running across 300+ locations, and *four national awards* between them. I started there as an intern and finished as the lead. Now I am doing it again at Digital T3.';
+  'I take the slowest part of a business, turn it into data, wire an *AI agent* into it and *ship it to production.* At SLT Telecom that became *two award-winning platforms.* I started there as an intern and finished as the lead. Now I am doing it again at Digital T3.';
 
 function tokens(text) {
   const out = [];

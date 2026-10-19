@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { CATEGORIES, FEATURED, PROJECTS } from '../data';
+import { CATEGORIES, DEMOS, FEATURED, PROJECTS } from '../data';
 import { lockScroll } from '../lib/scroll';
 import { DIAGRAMS } from './diagrams';
-import { ArrowUpRight, Close, Plus } from './Icons';
+import { ArrowUpRight, Close, Plus, SoundOff, SoundOn } from './Icons';
 import Reveal from './Reveal';
 import './work.css';
 
@@ -183,6 +183,7 @@ function Drawer({ project, onClose }) {
             <button ref={closeRef} className="drawer-close" onClick={onClose} aria-label="Close project details" data-cursor="close">
               <Close />
             </button>
+            {project.demo && <DrawerDemo demo={DEMOS.find((d) => d.id === project.demo)} />}
             <p className="mono drawer-meta">
               {project.category}
               <span aria-hidden="true"> / </span>
@@ -214,5 +215,26 @@ function Drawer({ project, onClose }) {
         </>
       )}
     </AnimatePresence>
+  );
+}
+
+// Autoplays muted the moment the drawer opens; one button for sound.
+function DrawerDemo({ demo }) {
+  const ref = useRef(null);
+  const [sound, setSound] = useState(false);
+  if (!demo) return null;
+  const toggle = () => {
+    const v = ref.current;
+    v.muted = sound;
+    setSound(!sound);
+    v.play().catch(() => {});
+  };
+  return (
+    <div className="drawer-demo">
+      <video ref={ref} src={demo.src} poster={demo.poster} autoPlay muted loop playsInline aria-label={`${demo.name} product demo`} />
+      <button className="drawer-demo-sound" onClick={toggle} aria-pressed={sound} aria-label={sound ? 'Mute demo' : 'Turn demo sound on'} data-cursor>
+        {sound ? <SoundOn /> : <SoundOff />}
+      </button>
+    </div>
   );
 }

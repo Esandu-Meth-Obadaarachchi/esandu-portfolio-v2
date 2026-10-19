@@ -59,7 +59,7 @@ function PinnedLoop() {
   const s = LOOP[step];
 
   return (
-    <div ref={wrap} className="loop-pin" style={{ height: `${N * 75 + 100}vh` }}>
+    <div ref={wrap} className="loop-pin" style={{ height: `${N * 36 + 60}vh` }}>
       <div className="loop-stage">
         <div className="container loop-grid">
           <div className="loop-copy">

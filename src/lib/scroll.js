@@ -27,6 +27,11 @@ export function scrollToId(id) {
   el.focus({ preventScroll: true });
 }
 
+export function scrollToY(y) {
+  if (lenis) lenis.scrollTo(y, { duration: 1 });
+  else window.scrollTo(0, y);
+}
+
 export function lockScroll(locked) {
   if (lenis) {
     if (locked) lenis.stop();
